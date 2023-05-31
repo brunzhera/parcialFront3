@@ -33,16 +33,16 @@ const Formulario = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (nombre.length < 3 || nombre.trimStart() !== nombre) {
-      setErrorNombre('El nombre tiene que tener al menos 3 caracteres y no debe contener espacios en blanco al comienzo');
-      setErrorGeneral('Por favor, verifica que la info sea correcta.');
+    if (nombre.trim() === '' || nombre[0] === ' ') {
+      setErrorNombre('El nombre no puede estar vacío ni contener espacios en blanco al principio');
+      setErrorGeneral('Por favor, verifica que la información sea correcta.');
       setMostrarCard(false);
       return;
     }
 
     if (email.length < 6) {
-      setErrorEmail('El email tiene que  tener al menos 6 caracteres');
-      setErrorGeneral('Por favor, verifica que la info sea correcta.');
+      setErrorEmail('El email debe tener al menos 6 caracteres');
+      setErrorGeneral('Por favor, verifica que la información sea correcta.');
       setMostrarCard(false);
       return;
     }
@@ -70,7 +70,7 @@ const Formulario = () => {
         <div>
           <label htmlFor="email">Email:</label>
           <input
-            type="text"
+            type="email"
             id="email"
             value={email}
             onChange={handleChangeEmail}
